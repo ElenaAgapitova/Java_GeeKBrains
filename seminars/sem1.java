@@ -48,7 +48,7 @@ public class sem1 {
             i--;
         }
     }
-    // System.out.println(Arrays.toString(arr));
+    System.out.println(Arrays.toString(arr));
 
     // Напишите метод, который находит самую длинную строку общего префикса среди массива строк.
     // Если общего префикса нет, вернуть пустую строку "".
