@@ -6,7 +6,7 @@ public class task2 {
 
         System.out.print("Простые числа от 1 до 1000: ");
         boolean flag = true;
-        for (int num = 1; num <= 1000; num++) {
+        for (int num = 2; num <= 1000; num++) {
           for (int del = 2; del < num; del++) {
             if (num % del == 0) {
                 flag = false;
