@@ -7,6 +7,10 @@ import java.io. *;
  */
 public class lec1 {
 
+    /**
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         // System.out.println("hi world");  // и снова привет мир
         // short age = 10;
