@@ -41,7 +41,8 @@ public class task2 {
                     temp = sortArray[j+1];
                     sortArray[j + 1] = sortArray[j];
                     sortArray[j] = temp;
-                    log.log(Level.INFO, Arrays.toString(sortArray) + "\n");
+
+                    log.log(Level.INFO, showArray(sortArray) + "\n");
                 }
             }
         }
@@ -52,11 +53,10 @@ public class task2 {
         Logger log = Logger.getLogger(task2.class.getName());
         FileHandler fh = new FileHandler("logBubble.txt", true);
         log.addHandler(fh);
+        log.setUseParentHandlers(false);
 
         SimpleFormatter sf = new SimpleFormatter();
         fh.setFormatter(sf);
         return log;
     }
-
-
 }
