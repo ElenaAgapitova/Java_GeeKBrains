@@ -10,19 +10,19 @@ public class task2 {
         // Реализуйте алгоритм сортировки пузырьком числового массива, результат после каждой
         // итерации запишите в лог-файл.
 
-        int[] array = createRandomArray(10, 15);
+        int[] array = createRandomArray(10, -5, 15);
         System.out.print("Созданный массив: ");
         System.out.println(showArray(array));
-        System.out.print("Отсортированный массив: ");
         int[] sortArray = bubbleSort(array);
+        System.out.print("Отсортированный массив: ");
         System.out.println(showArray(sortArray));
     }
 
-    static int[] createRandomArray(int size, int upperBond) {
+    static int[] createRandomArray(int size, int downBound, int upperBond) {
         Random rand = new Random();
         int[] array = new int[size];
         for(int i = 0; i < size; i++){
-            array[i] = rand.nextInt(upperBond);
+            array[i] = rand.nextInt(upperBond) + downBound;
         }
         return array;
     }
@@ -31,36 +31,32 @@ public class task2 {
         return Arrays.toString(array);
     }
 
-    static int[] bubbleSort(int[] array) {
+    static int[] bubbleSort(int[] array) throws IOException {
+        Logger log = log_result();
         int[] sortArray = Arrays.copyOf(array, array.length);
-
-        for (int i = 0; i < sortArray.length / 2 + 1; i++) {
-            for (int j = 0; j < sortArray.length - 1; j++) {
+        int temp = 0;
+        for (int i = 0; i < sortArray.length; i++) {
+            for (int j = 0; j < sortArray.length - i - 1; j++) {
                 if (sortArray[j] > sortArray[j + 1]) {
-                    int temp = sortArray[j];
+                    temp = sortArray[j+1];
                     sortArray[j + 1] = sortArray[j];
-                    sortArray[j + 1] = temp;
+                    sortArray[j] = temp;
+                    log.log(Level.INFO, Arrays.toString(sortArray) + "\n");
                 }
-//                try {
-//                    log_result(sortArray);
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                }
             }
-
         }
         return sortArray;
     }
 
-    static void log_result(int[] array) throws IOException {
+    static Logger log_result() throws IOException {
         Logger log = Logger.getLogger(task2.class.getName());
         FileHandler fh = new FileHandler("logBubble.txt", true);
         log.addHandler(fh);
 
         SimpleFormatter sf = new SimpleFormatter();
         fh.setFormatter(sf);
-
-        // log.setLevel(Level.INFO);
-        log.log(Level.INFO, Arrays.toString(array) + "\n");
+        return log;
     }
+
+
 }
