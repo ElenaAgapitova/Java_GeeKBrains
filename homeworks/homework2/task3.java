@@ -15,10 +15,10 @@ public class task3 {
         Пример вывода:
         Студент Иванов получил 5 по предмету Математика.
          */
-        String jsonStr = "{\"фамилия\":\"Иванов\",\"оценка\":\"5\",\"предмет\":\"Математика\"}," +
+        String jsonStr = "[{\"фамилия\":\"Иванов\",\"оценка\":\"5\",\"предмет\":\"Математика\"}," +
                 "{\"фамилия\":\"Петрова\",\"оценка\":\"4\",\n" +
                 "\"предмет\":\"Информатика\"},{\"фамилия\":\"Краснов\",\"оценка\":\"5\",\"предмет\":" +
-                "\"Физика\"}";
+                "\"Физика\"}]";
         getString(jsonStr);
     }
 
@@ -26,18 +26,18 @@ public class task3 {
         Gson gson = new Gson();
         Map<String, Object> jsonMap = gson.fromJson(jsonStr, new TypeToken<Map<String,String>>(){}.getType());
         List<Map.Entry<String, Object>> pupilsList = new ArrayList<>(jsonMap.entrySet());
-        StringBuilder sb = new StringBuilder();
-
-        for (Map.Entry<String, Object> entry: pupilsList) {
-            sb.append("Студент ");
-            sb.append(entry.getValue());
-            sb.append(" получил ");
-            sb.append(entry.getValue());
-            sb.append(" по предмету ");
-            sb.append(entry.getValue());
-            sb.append("\n");
+        // StringBuilder sb = new StringBuilder();
+//        for (Map.Entry<String, Object> entry: pupilsList) {
+//            sb.append("Студент ");
+//            sb.append(entry.getValue());
+//            sb.append(" получил ");
+//            sb.append(entry.getValue());
+//            sb.append(" по предмету ");
+//            sb.append(entry.getValue());
+//            sb.append("\n");
+        System.out.println(pupilsList.toString());
         }
-        System.out.println(sb.toString());
+
 
     }
-}
+
