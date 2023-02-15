@@ -1,11 +1,15 @@
 package homeworks.homework2;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.util.*;
-import java.util.ArrayList;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+
 public class task3 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /*
         Дана json строка (можно сохранить в файл и читать из файла)
         [{"фамилия":"Иванов","оценка":"5","предмет":"Математика"},{"фамилия":"Петрова","оценка":"4",
@@ -15,29 +19,46 @@ public class task3 {
         Пример вывода:
         Студент Иванов получил 5 по предмету Математика.
          */
-        String jsonStr = "[{\"фамилия\":\"Иванов\",\"оценка\":\"5\",\"предмет\":\"Математика\"}," +
-                "{\"фамилия\":\"Петрова\",\"оценка\":\"4\",\n" +
-                "\"предмет\":\"Информатика\"},{\"фамилия\":\"Краснов\",\"оценка\":\"5\",\"предмет\":" +
-                "\"Физика\"}]";
-        getString(jsonStr);
+
+        // Считываем инфо из файла data.json
+        String jsonStr = Files.readString(Paths.get("homeworks/homework2/data.json"));
+
+        String result = getString(jsonStr); // парсинг и формирование заданной строки
+        System.out.println(result);
     }
 
-    static void getString(String jsonStr) {
+    private static String getString(String jsonStr) {
         Gson gson = new Gson();
-        Map<String, Object> jsonMap = gson.fromJson(jsonStr, new TypeToken<Map<String,String>>(){}.getType());
-        List<Map.Entry<String, Object>> pupilsList = new ArrayList<>(jsonMap.entrySet());
-        // StringBuilder sb = new StringBuilder();
-//        for (Map.Entry<String, Object> entry: pupilsList) {
-//            sb.append("Студент ");
-//            sb.append(entry.getValue());
-//            sb.append(" получил ");
-//            sb.append(entry.getValue());
-//            sb.append(" по предмету ");
-//            sb.append(entry.getValue());
-//            sb.append("\n");
-        System.out.println(pupilsList.toString());
+        Student[] students = gson.fromJson(jsonStr, Student[].class);
+        StringBuilder sb = new StringBuilder();
+        for (Student student : students) {
+            sb.append("Студент ");
+            sb.append(student.surname);
+            sb.append(" получил ");
+            sb.append(student.mark);
+            sb.append(" по предмету ");
+            sb.append(student.subject);
+            sb.append("\n");
+
         }
-
-
+        return sb.toString();
     }
+
+    // Класс, соответствующий структуре json {"фамилия":"Иванов","оценка":"5","предмет":"Математика"}
+    private static class Student {
+        @SerializedName("фамилия")
+        String surname;
+        @SerializedName("оценка")
+        String mark;
+        @SerializedName("предмет")
+        String subject;
+
+        public Student(String surname, String mark, String subject) {
+            this.surname = surname;
+            this.mark = mark;
+            this.subject = subject;
+
+        }
+    }
+}
 
