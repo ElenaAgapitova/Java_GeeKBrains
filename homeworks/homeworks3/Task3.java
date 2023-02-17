@@ -12,10 +12,10 @@ public class Task3 {
         ArrayList<Integer> numbers = getRandomList(15, 100);
         int maxValue = Collections.max(numbers);
         int minValue = Collections.min(numbers);
-        int averageValue = numbers.stream().mapToInt(Integer::intValue).sum()/numbers.size();
+        double averageValue = getAverageValue(numbers);
         System.out.printf("Полученный список: %s\n", numbers.toString());
         System.out.printf("Максимальное значение в списке: %d\nМинимальное значение списка: %d\n" +
-                "Среднее арифмитеческое элементов списка: %d", maxValue, minValue, averageValue);
+                "Среднее арифмитеческое элементов списка: %.2f", maxValue, minValue, averageValue);
     }
 
     private static ArrayList<Integer> getRandomList(int size, int upperBond) {
@@ -25,5 +25,11 @@ public class Task3 {
             list.add(rand.nextInt(upperBond));
         }
         return list;
+    }
+
+    private static Double getAverageValue (ArrayList<Integer> list) {
+        int sum = list.stream().mapToInt(Integer::intValue).sum();
+        double averageValue = (double) sum / list.size();
+        return averageValue;
     }
 }
