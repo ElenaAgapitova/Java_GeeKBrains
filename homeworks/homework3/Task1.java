@@ -6,7 +6,7 @@ import java.util.Random;
 public class Task1 {
     public static void main(String[] args) {
         // Реализовать алгоритм сортировки слиянием
-        int[] array = createRandomArray(7, -10, 25);
+        int[] array = createRandomArray(15, -10, 25);
         System.out.printf("Исходный массив: %s\n", Arrays.toString(array));
         mergeSortArray(array);
         System.out.printf("Отсортированный массив: %s\n", Arrays.toString(array));
