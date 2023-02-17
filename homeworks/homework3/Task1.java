@@ -1,4 +1,4 @@
-package homeworks.homeworks3;
+package homeworks.homework3;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -7,9 +7,9 @@ public class Task1 {
     public static void main(String[] args) {
         // Реализовать алгоритм сортировки слиянием
         int[] array = createRandomArray(7, -10, 25);
-        System.out.println(Arrays.toString(array));
+        System.out.printf("Исходный массив: %s\n", Arrays.toString(array));
         mergeSortArray(array);
-        System.out.println(Arrays.toString(array));
+        System.out.printf("Отсортированный массив: %s\n", Arrays.toString(array));
 
     }
 
@@ -17,7 +17,7 @@ public class Task1 {
         Random rand = new Random();
         int[] array = new int[size];
         for (int i = 0; i < size; i++) {
-            array[i] = rand.nextInt(upperBond) + downBound;
+            array[i] = rand.nextInt(upperBond) - rand.nextInt(Math.abs(downBound));
         }
         return array;
     }
@@ -33,7 +33,6 @@ public class Task1 {
         mergeSortArray(left);
         mergeSortArray(right);
         sortArray(array, left, right);
-        System.out.println(Arrays.toString(array));
     }
 
     static void sortArray(int[] array, int[] left, int[] right) {
