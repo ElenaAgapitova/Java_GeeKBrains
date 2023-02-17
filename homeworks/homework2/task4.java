@@ -41,7 +41,7 @@ public class task4 {
         return result;
     }
     static void log_result(double a, double b, double result, String operation) throws IOException {
-        Logger log = Logger.getLogger(task3.class.getName());
+        Logger log = Logger.getLogger(task4.class.getName());
         FileHandler fh =new FileHandler("logCalc.txt", true);
         log.addHandler(fh);
         log.setUseParentHandlers(false);

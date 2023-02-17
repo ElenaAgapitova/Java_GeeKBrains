@@ -16,3 +16,6 @@ INFO: Результат вычисления: 123.45 + 123.45  =  246.9;
 февр. 17, 2023 9:09:53 PM homeworks.homework2.task4 log_result
 INFO: Результат вычисления: 4.0 + 3.0  =  7.0;
 
+февр. 17, 2023 9:13:08 PM homeworks.homework2.task4 log_result
+INFO: Результат вычисления: 3.0 * 235.0  =  705.0;
+
