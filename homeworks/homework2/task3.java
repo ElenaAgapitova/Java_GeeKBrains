@@ -44,7 +44,7 @@ public class task3 {
         return sb.toString();
     }
 
-    // Класс, соответствующий структуре json {"фамилия":"Иванов","оценка":"5","предмет":"Математика"}
+    // Класс, соответствующий структуре json {"фамилия":"Иванов","оценка": 5,"предмет":"Математика"}
     private static class Student {
         @SerializedName("фамилия")
         String surname;
