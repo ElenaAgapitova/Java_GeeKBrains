@@ -32,7 +32,7 @@ public class task2 {
     }
 
     static int[] bubbleSort(int[] array) throws IOException {
-        Logger log = log_result();
+        Logger log = logResult();
         int[] sortArray = Arrays.copyOf(array, array.length);
         int temp = 0;
         for (int i = 0; i < sortArray.length; i++) {
@@ -49,7 +49,7 @@ public class task2 {
         return sortArray;
     }
 
-    static Logger log_result() throws IOException {
+    static Logger logResult() throws IOException {
         Logger log = Logger.getLogger(task2.class.getName());
         FileHandler fh = new FileHandler("logBubble.txt", true);
         log.addHandler(fh);
