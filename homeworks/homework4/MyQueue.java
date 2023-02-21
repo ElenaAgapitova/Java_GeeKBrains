@@ -11,7 +11,7 @@ public class MyQueue {
         linkedList.addLast(item);
     }
 
-    // dequeue() - возвращает первый элемент из очереди и удаляет его - возвращает первый элемент из очереди и удаляет его
+    // dequeue() - возвращает первый элемент из очереди и удаляет его.
     Integer dequeue() {
         if (linkedList.size()>0) {
             return linkedList.pollFirst();
