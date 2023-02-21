@@ -27,4 +27,8 @@ public class MyQueue {
         return null;
     }
 
+    String doString(){
+        return linkedList.toString();
+    }
+
 }

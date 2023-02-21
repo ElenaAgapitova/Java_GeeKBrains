@@ -14,9 +14,10 @@ public class Task2 {
         queue.enqueue(3);
         queue.enqueue(4);
         queue.enqueue(5);
-        System.out.println(queue.first());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.first());
+        System.out.println(queue.doString()); // добавила метод для вывода в консоль
+        System.out.println(queue.first()); // 1
+        System.out.println(queue.dequeue()); // 1
+        System.out.println(queue.dequeue()); // 2
+        System.out.println(queue.first()); // 3
     }
 }
