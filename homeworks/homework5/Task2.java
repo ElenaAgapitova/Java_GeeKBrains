@@ -16,10 +16,11 @@ public class Task2 {
                 "Марина Лугова", "Анна Владимирова", "Иван Мечников", "Петр Петин", "Иван Ежов"));
 
         System.out.println(getMapName(getFirstName(listName)));
-        System.out.println(getSortedMap(getMapName(getFirstName(listName))));
+        HashMap<String, Integer> map = getMapName(getFirstName(listName));
+        TreeMap<String, Integer> sortedMap = new TreeMap<>(new ValueComparator(map)) {};
+        sortedMap.putAll(map);
+        System.out.println(sortedMap);
     }
-
-
 
 
     static LinkedList<String> getFirstName(LinkedList<String> list) {
@@ -32,8 +33,8 @@ public class Task2 {
         return newList;
     }
 
-    static TreeMap<String, Integer> getMapName(LinkedList<String> firstNameList) {
-        TreeMap<String, Integer> map = new TreeMap<>();
+    static HashMap<String, Integer> getMapName(LinkedList<String> firstNameList) {
+        HashMap<String, Integer> map = new HashMap<>();
         for (String name : firstNameList) {
             if (!map.containsKey(name)) {
                 map.put(name, 1);
@@ -42,18 +43,21 @@ public class Task2 {
         return map;
     }
 
-    static TreeMap<String, Integer> getSortedMap(TreeMap<String, Integer> map) {
-        Comparator<String> valueComparator = new Comparator<String>() {
-            @Override
-            public int compare(String a, String b) {
-                Integer v1 = map.get(a);
-                Integer v2 = map.get(b);
-                return v2.compareTo(v1);
-            }
-        };
-        TreeMap<String, Integer> sortedMap = new TreeMap<>(valueComparator);
-        sortedMap.putAll(map);
-        return sortedMap;
-    }
+    static class ValueComparator implements Comparator<String> {
+        HashMap<String, Integer> map;
 
+        public ValueComparator( HashMap<String, Integer> map ) {
+            this.map = map;
+        }
+
+        // Функции сравнения...
+        public int compare( String el1, String el2 ) {
+            if ( map.get( el1 ) >= map.get( el2 ) ) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }
+    }
 }
+
