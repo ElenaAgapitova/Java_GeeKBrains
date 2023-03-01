@@ -17,9 +17,15 @@ public class Task2 {
 
         System.out.println(getMapName(getFirstName(listName)));
         HashMap<String, Integer> map = getMapName(getFirstName(listName));
-        TreeMap<String, Integer> sortedMap = new TreeMap<>(new ValueComparator(map)) {};
+        TreeMap<String, Integer> sortedMap = new TreeMap<>(new ValueComparator(map)) {
+        };
         sortedMap.putAll(map);
-        System.out.println(sortedMap);
+        System.out.println("\nСортированнае повторяющиеся:");
+        for (HashMap.Entry<String, Integer> entry : sortedMap.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println(entry.getKey() + " - " + entry.getValue());
+            }
+        }
     }
 
 
@@ -46,13 +52,13 @@ public class Task2 {
     static class ValueComparator implements Comparator<String> {
         HashMap<String, Integer> map;
 
-        public ValueComparator( HashMap<String, Integer> map ) {
+        public ValueComparator(HashMap<String, Integer> map) {
             this.map = map;
         }
 
         // Функции сравнения...
-        public int compare( String el1, String el2 ) {
-            if ( map.get( el1 ) >= map.get( el2 ) ) {
+        public int compare(String el1, String el2) {
+            if (map.get(el1) >= map.get(el2)) {
                 return -1;
             } else {
                 return 1;
