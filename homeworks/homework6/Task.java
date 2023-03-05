@@ -18,7 +18,7 @@ public class Task {
                 "не установлена", "черный"));
         // showAll(laptops);
         Laptop needLaptop = requestLaptop();
-        System.out.println("========= Параметры запроса ==========\n" + needLaptop);
+        System.out.println("========= Необходимый ноутбук ==========\n" + needLaptop);
         Set<Laptop> filteredLaptops = filteredLaptops(laptops, needLaptop);
         showAll(filteredLaptops);
 
@@ -32,50 +32,37 @@ public class Task {
         }
     }
 
+    static Integer getIntegerValue(String offer, Scanner input) {
+        while (true) {
+            System.out.print(offer);
+            String inputString = input.nextLine();
+            if (inputString.equals("")) {
+                return null;
+            }
+            try {
+                int value = Integer.parseInt(inputString);
+                if (value > 0) {
+                    return value;
+                } else {
+                    System.out.println("Введите положительное число!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Введите целое число или нажмите ввод!");
+            }
+        }
+    }
+
     static Laptop requestLaptop() {
         Scanner input = new Scanner(System.in);
+        System.out.println("============ Подбор ноутбука по параметрам ============");
         System.out.print("Введите название модели или нажмите ввод: ");
         String name = input.nextLine();
         System.out.print("Введите желаемый цвет или нажмите ввод: ");
         String color = input.nextLine();
         System.out.print("Введите операционную систему или нажмите ввод: ");
         String operatingSystem = input.nextLine();
-        Integer ssd = null;
-        while (true) {
-            System.out.print("Введите объем жесткого диска или нажмите ввод: ");
-            String inputString = input.nextLine();
-            if (inputString.equals("")) {
-                break;
-            }
-            try {
-                ssd = Integer.parseInt(inputString);
-                if (ssd > 0) {
-                    break;
-                } else {
-                    System.out.print("Введите положительное число: ");
-                }
-            } catch (NumberFormatException e) {
-                System.out.print("Введите целое число или нажмите ввод: ");
-            }
-        }
-        Integer ram = null;
-        while (true) {
-            System.out.print("Введите размер оперативной памяти или нажмите ввод: ");
-            String inputString = input.nextLine();
-            if (inputString.equals("")) {
-                break;
-            }
-            try {
-                ram = Integer.parseInt(inputString);
-                if (ram > 0) {
-                    break;
-                } else {
-                    System.out.print("Введите положительное число: ");
-                }
-            } catch (NumberFormatException e) {
-                System.out.print("Введите целое число или нажмите ввод: ");
-            }
-        }
+        Integer ssd = getIntegerValue("Введите объем жесткого диска SSD или нажмите ввод: ", input);
+        Integer ram = getIntegerValue("Введите размер оперативной памяти RAM или нажмите ввод: ", input);
         input.close();
         return new Laptop(name, ram, ssd, operatingSystem, color);
     }
